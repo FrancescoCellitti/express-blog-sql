@@ -1,5 +1,5 @@
 const port = process.env.PORT
-const posts = [
+/* const posts = [
     {
         titolo: "Ciambellone soffice",
         contenuto: "Ricetta tradizionale per un ciambellone soffice e profumato.",
@@ -30,6 +30,6 @@ const posts = [
         immagine: `http://localhost:${port}/images/torta_paesana.jpeg`,
         tags: ["dolci", "lombardia", "tradizione"]
     }
-]
+] 
 
-module.exports = posts
+module.exports = posts*/

@@ -7,7 +7,7 @@ const credentials = {
     database : 'my_blog'
 }
 
-const connection =mysql.createConnection(credentials)
+const connection = mysql.createConnection(credentials)
 
 connection.connect(err => {
     if (err){
@@ -15,5 +15,6 @@ connection.connect(err => {
     }
     console.info('connection succefull')
 })
+
 
 module.exports = connection
