@@ -54,9 +54,22 @@ router.delete('/:id', (req, res) => {
     res.status(204)
     res.send()
     })
-    
+})
 
-
+router.post('/', (req, res)=>{
+    const id = req.body.id;
+    const title  = req.body.title;
+    const content = req.body.content;
+    const img = req.body.image;
+    const sqlQuery = 'INSERT INTO posts (id , title, content, image) VALUE(?, ?, ?, ?);'
+    connection.query(sqlQuery,[id, title, content, img], (err, results)=> {
+         if (err) return res.status(500).json({
+            error: true,
+            message: err.message
+        })
+        res.status(204)
+        res.send('post aggiunto')
+    })
 })
 
 
