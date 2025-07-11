@@ -51,19 +51,19 @@ router.delete('/:id', (req, res) => {
                 message: 'Post non trovato'
             })
         }
-    res.status(204)
-    res.send()
+        res.status(204)
+        res.send()
     })
 })
 
-router.post('/', (req, res)=>{
+router.post('/', (req, res) => {
     const id = req.body.id;
-    const title  = req.body.title;
+    const title = req.body.title;
     const content = req.body.content;
     const img = req.body.image;
     const sqlQuery = 'INSERT INTO posts (id , title, content, image) VALUE(?, ?, ?, ?);'
-    connection.query(sqlQuery,[id, title, content, img], (err, results)=> {
-         if (err) return res.status(500).json({
+    connection.query(sqlQuery, [id, title, content, img], (err, results) => {
+        if (err) return res.status(500).json({
             error: true,
             message: err.message
         })
@@ -72,6 +72,20 @@ router.post('/', (req, res)=>{
     })
 })
 
+router.patch('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const { title, content, image } = req.body;
+    const sqlQuery = 'UPDATE posts SET title = ?, content = ?, image = ? WHERE id = ?;'
+    connection.query(sqlQuery, [title, content, image, id], (err, results)=>{
+         if (err) return res.status(500).json({
+            error: true,
+            message: err.message
+        })
+        res.status(204)
+        res.send('post modificato')
+
+    })
+})
 
 
 
