@@ -36,4 +36,31 @@ router.get('/:id', (req, res) => {
 
     })
 })
+
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const sqlQuery = 'DELETE FROM posts WHERE id =?;'
+    connection.query(sqlQuery, [id], (err, results) => {
+        if (err) return res.status(500).json({
+            error: true,
+            message: err.message
+        })
+        else if (results.affectedRows === 0) {
+            return res.status(404).json({
+                error: true,
+                message: 'Post non trovato'
+            })
+        }
+    res.status(204)
+    res.send()
+    })
+    
+
+
+})
+
+
+
+
+
 module.exports = router
